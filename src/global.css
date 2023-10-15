@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    h1,
+    .h1 {
+        @apply text-4xl lg:text-5xl font-bold;
+    }
+
+    h2,
+    .h2 {
+        @apply text-3xl lg:text-4xl font-bold;
+    }
+
+    h3,
+    .h3 {
+        @apply text-2xl lg:text-3xl font-bold;
+    }
+
+    h4,
+    .h4 {
+        @apply text-xl lg:text-2xl font-bold;
+    }
+
+    h5,
+    .h5 {
+        @apply text-base lg:text-medium font-bold;
+    }
+
+    *::-webkit-scrollbar {
+        @apply bg-neutral-100 w-2.5 h-2.5 m-2;
+    }
+
+    *::-webkit-scrollbar-track {
+        @apply opacity-50 w-2 h-2;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        @apply bg-neutral-300 m-2 rounded-full;
+    }
+}
