@@ -1,5 +1,5 @@
 import {Meta, StoryObj} from "@storybook/react";
-import {Select} from "../";
+import {Select} from "../src";
 
 export default {
     title: "Components/Input",

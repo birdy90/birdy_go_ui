@@ -1,5 +1,3 @@
-"use client";
-
 import {Divider} from "@nextui-org/divider";
 import {Fragment} from "react";
 import {Button, MenuItemProps} from "../";

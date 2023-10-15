@@ -1,5 +1,5 @@
 import {Meta, StoryObj} from "@storybook/react";
-import {DateInput} from "../";
+import {DateInput} from "../src";
 
 export default {
     title: "Components/Input",

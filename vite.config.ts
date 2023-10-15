@@ -7,9 +7,12 @@ export default defineConfig({
 
   plugins: [
     react(),
-    dts({ include: ['lib'] }),
+    dts({
+      rollupTypes: true
+    }),
   ],
   build: {
+    sourcemap: false,
     cssCodeSplit: false,
     lib: {
       entry: resolve(__dirname, './src/index.ts'),

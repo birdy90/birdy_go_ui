@@ -1,6 +1,6 @@
 import {Meta, StoryObj} from "@storybook/react";
 import {BiHome} from "react-icons/bi";
-import {Card} from "../";
+import {Card} from "../src";
 
 export default {
     title: "Components/Card",

@@ -1,5 +1,3 @@
-"use client";
-
 import {
     SortDescriptor,
     TableBody,

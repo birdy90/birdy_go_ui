@@ -1,5 +1,5 @@
 import {Meta, StoryObj} from "@storybook/react";
-import {Nav, NavProps} from "../";
+import {Nav, NavProps} from "../src";
 
 const lengthOfStrings = 7;
 

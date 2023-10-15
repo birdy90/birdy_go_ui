@@ -1,7 +1,6 @@
 import {Meta, StoryObj} from "@storybook/react";
 import {BiHome} from "react-icons/bi";
-import {ButtonVariantValues, ColorTypeValues, RadiusVariants} from "../";
-import {Button, ButtonProps} from "../";
+import {ButtonVariantValues, ColorTypeValues, RadiusVariants, Button, ButtonProps} from "../src";
 
 export default {
     title: "Components/Button",

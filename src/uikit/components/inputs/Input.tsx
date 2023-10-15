@@ -1,5 +1,3 @@
-"use client";
-
 import {Input as UiInput} from "@nextui-org/input";
 import {forwardRef, HTMLInputTypeAttribute, useId} from "react";
 import {BaseInputProps} from "../../";

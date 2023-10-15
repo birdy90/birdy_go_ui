@@ -1,7 +1,6 @@
 import {Meta, StoryObj} from "@storybook/react";
 import {BiHome, BiTrash} from "react-icons/bi";
-import {Button} from "../";
-import {MenuButton} from "../";
+import {Button, MenuButton} from "../src";
 
 export default {
     title: "Components/Button",

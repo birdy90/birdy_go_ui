@@ -1,6 +1,6 @@
 import {Meta, StoryObj} from "@storybook/react";
 import {BiHome} from "react-icons/bi";
-import {Tooltip} from "../";
+import {Tooltip} from "../src";
 
 export default {
     title: "Components/Tooltip",

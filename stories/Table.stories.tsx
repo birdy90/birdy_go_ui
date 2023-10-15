@@ -1,6 +1,6 @@
 import {Meta, StoryObj} from "@storybook/react";
-import {Table} from "../";
-import {tableDataGenerator} from "../../utils";
+import {Table} from "../src";
+import {tableDataGenerator} from "../src/utils";
 
 const tableData = tableDataGenerator(3, 30, 5);
 const wideTableData = tableDataGenerator(15, 30, 5);

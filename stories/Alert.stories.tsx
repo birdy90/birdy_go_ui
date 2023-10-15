@@ -1,6 +1,6 @@
 import {Meta, StoryObj} from "@storybook/react";
 import {BiHome} from "react-icons/bi";
-import {Alert, ColorTypeValues} from "../";
+import {Alert, ColorTypeValues} from "../src";
 
 export default {
     title: "Components/Alert",
