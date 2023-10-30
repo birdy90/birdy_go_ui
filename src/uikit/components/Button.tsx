@@ -10,7 +10,7 @@ export interface ButtonProps extends Omit<HTMLAttributes<Element>, "shape" | "si
     variant?: ButtonVariants;
     icon?: ReactElement;
     disabled?: boolean;
-    small?: boolean;
+    large?: boolean;
     rounded?: boolean;
     loading?: boolean;
     stopPropagation?: boolean;
@@ -24,7 +24,7 @@ export const Button = (buttonProps: ButtonProps) => {
         variant = "solid",
         rounded,
         loading,
-        small,
+        large,
         disabled,
         children,
         className,
@@ -57,14 +57,14 @@ export const Button = (buttonProps: ButtonProps) => {
             'active:bg-danger-600 active:border-danger-600',
         ),
         default: clsx(
-            'bg-gray-200 border-gray-200 text-gray-900',
-            'hover:bg-gray-300 hover:border-gray-300',
-            'active:bg-gray-400 active:border-gray-400',
+            'bg-gray-400 border-gray-200 text-gray-900',
+            'hover:bg-gray-500 hover:border-gray-500',
+            'active:bg-gray-600 active:border-gray-600',
         ),
     };
 
     const buttonVariantClasses: Record<ButtonVariants, string> = {
-        solid: '!text-gray-950',
+        solid: '!text-white',
         bordered: 'border-2 bg-opacity-0 hover:bg-opacity-10 active:bg-opacity-20',
         light: 'bg-opacity-0 hover:bg-opacity-10 active:bg-opacity-20',
     };
@@ -73,15 +73,15 @@ export const Button = (buttonProps: ButtonProps) => {
         overrideClassName,
         focusOutlineClasses,
     ) : clsx(
-        'h-10 whitespace-nowrap',
+        'whitespace-nowrap transition-colors',
         focusOutlineClasses,
         buttonColorClasses[color],
         buttonVariantClasses[variant],
         'flex items-center justify-center gap-2',
         rounded ? 'rounded-full' : 'rounded',
-        isIconOnly ? 'w-10' : 'px-4',
-        small && (isIconOnly ? 'w-8' : 'p-2'),
-        small && 'h-8',
+        isIconOnly ? 'w-8' : 'px-4',
+        large && (isIconOnly ? '!w-10' : ''),
+        large ? 'h-10' : 'h-8',
         isDisabled && 'opacity-50 pointer-events-none',
         className,
     );

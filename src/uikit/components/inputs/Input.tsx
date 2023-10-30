@@ -5,19 +5,23 @@ import {clsx} from "clsx";
 import {inputCommonClasses} from "../../constants.ts";
 
 export interface InputProps extends BaseInputProps {
+    overrideClassName?: string;
     autoFocus?: boolean;
     type?: HTMLInputTypeAttribute;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((
     {
+        overrideClassName,
+        className,
         label = '',
         ...props
     },
     ref
 ) => {
-    const inputClasses = clsx(
+    const inputClasses = overrideClassName ?? clsx(
         inputCommonClasses(Boolean(props.errorMessage)),
+        className,
     );
 
     return (

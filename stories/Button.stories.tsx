@@ -73,10 +73,10 @@ export const Danger: Story = {
     render: AllButtonVariants,
 };
 
-export const Small: Story = {
+export const Large: Story = {
     args: {
         ...commonArgs,
-        small: true,
+        large: true,
     },
     render: AllButtonVariants,
 };
@@ -89,10 +89,10 @@ export const Rounded: Story = {
     render: AllButtonVariants,
 };
 
-export const RoundedSmall: Story = {
+export const RoundedLarge: Story = {
     args: {
         ...commonArgs,
-        small: true,
+        large: true,
         rounded: true,
     },
     render: AllButtonVariants,

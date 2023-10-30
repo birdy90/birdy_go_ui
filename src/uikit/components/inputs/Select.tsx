@@ -4,6 +4,8 @@ import {inputCommonClasses} from "../../constants.ts";
 import {clsx} from "clsx";
 
 export interface SelectProps extends Omit<BaseInputProps, 'value' | 'defaultValue'> {
+    className?: string;
+    overrideClassName?: string;
     options?: ListOption[];
     value?: string | string[];
     defaultValue?: string | string[];
@@ -13,14 +15,17 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     (props, forwardRef) => {
         const id = useId();
         const {
+            overrideClassName,
+            className,
             label,
             options = [],
             ...otherProps
         } = props;
 
-        const selectButtonClasses = clsx(
+        const selectButtonClasses = overrideClassName ?? clsx(
             'flex items-center w-full justify-between',
             inputCommonClasses(Boolean(props.errorMessage)),
+            className,
         );
 
         return (
