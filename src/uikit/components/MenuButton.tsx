@@ -1,59 +1,53 @@
-import {Divider} from "@nextui-org/divider";
-import {Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@nextui-org/dropdown";
-import {cloneElement, ReactNode} from "react";
-import {MenuItemProps} from "../";
+import {MenuTrigger, Popover, Menu, Item, Separator} from 'react-aria-components';
+import { PropsWithChildren, ReactNode } from "react";
+import {Button, Card} from "../";
 import {clsx} from "clsx";
 
-export interface MenuButtonProps {
+export interface MenuButtonProps extends PropsWithChildren {
     className?: string;
+    trigger?: ReactNode;
     loading?: boolean;
-    items: MenuItemProps[];
-    children: ReactNode;
 }
 
-export const MenuButton = ({items = [], children}: MenuButtonProps) => {
+export interface MenuButtonItemProps extends PropsWithChildren {
+    className?: string;
+}
+
+const MenuButtonItem = (props: MenuButtonItemProps) => {
+    const itemClasses = clsx(
+        'cursor-pointer px-2 py-1 rounded',
+        'focus-visible:outline-none focus-visible:bg-gray-100',
+        props.className,
+    );
+
+    return <Item className={itemClasses}>
+        <div>
+            {props.children}
+        </div>
+    </Item>
+}
+MenuButtonItem.displayName = "MenuButtonItem";
+
+export const MenuButton = (props: MenuButtonProps) => {
     return (
-        <Dropdown>
-            <DropdownTrigger>{children}</DropdownTrigger>
+        <MenuTrigger>
+            <Button className={props.className} loading={props.loading}>
+                {props.trigger}
+            </Button>
 
-            <DropdownMenu aria-label="">
-                {items.map((item, index) => {
-                    const key = item.key ?? index;
-
-                    if (item.type === "divider" || item.type === "spacer") {
-                        return (
-                            <DropdownItem key={key} isReadOnly className="pointer-events-none">
-                                <Divider />
-                            </DropdownItem>
-                        );
-                    }
-
-                    const sizedIcon = item.icon
-                        ? cloneElement(item.icon, {
-                              className: "h-4 w-4 fill-current",
-                          })
-                        : null;
-
-                    const itemClassNames = clsx(
-                        !item.onClick ? "!pointer-events-none" : "",
-                        item.danger ? "text-danger" : "",
-                    );
-
-                    return (
-                        <DropdownItem
-                            key={key}
-                            startContent={sizedIcon}
-                            className={itemClassNames}
-                            color={item.danger ? "danger" : "default"}
-                            onClick={item.onClick}
-                        >
-                            {item.label}
-                        </DropdownItem>
-                    );
-                })}
-            </DropdownMenu>
-        </Dropdown>
+            <Popover>
+                <Card extendClassName="!p-1">
+                    <Menu className="outline-none">
+                        {props.children}
+                    </Menu>
+                </Card>
+            </Popover>
+        </MenuTrigger>
     );
 };
-
 MenuButton.displayName = "MenuButton";
+MenuButton.Item = MenuButtonItem;
+
+MenuButton.Divider = () => <Separator className="border-b border-border my-1" />;
+
+

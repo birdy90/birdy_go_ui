@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/react";
-import {ThemeProvider} from '../src';
+import {UikitProvider} from '../src';
 import '../src/global.css';
 
 const preview: Preview = {
@@ -14,9 +14,9 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <ThemeProvider>
+      <UikitProvider>
         <Story />
-      </ThemeProvider>
+      </UikitProvider>
     ),
   ],
 };

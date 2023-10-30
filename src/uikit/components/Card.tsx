@@ -1,26 +1,41 @@
-import {CardBody, CardHeader, Card as UiCard} from "@nextui-org/card";
-import {Divider} from "@nextui-org/divider";
 import React from "react";
 import {clsx} from "clsx";
+import { ColorType } from "../types";
+import { Divider } from "./";
 
 export interface CardProps extends React.HTMLAttributes<Element> {
+    color?: ColorType;
+    extendClassName?: string;
     header?: React.ReactNode;
     children?: React.ReactNode;
 }
 
-export const Card = ({className, header, children, ...props}: CardProps) => {
-    const classes = clsx("text-sm", className);
+export const Card = ({className, extendClassName, header, children, color, ...props}: CardProps) => {
+    const colorMapping: Record<ColorType, string> = {
+        default: "bg-gray-100",
+        primary: "bg-primary-100",
+        secondary: "bg-secondary-100",
+        danger: "bg-danger-100",
+    };
+
+    const cardClasses = className ?? clsx(
+        'rounded-lg border border-border px-3 py-2 shadow',
+        color && colorMapping[color],
+        extendClassName,
+    );
 
     return (
-        <UiCard {...props} className={classes}>
+        <div {...props} className={cardClasses}>
             {header && (
                 <>
-                    <CardHeader>{header}</CardHeader>
+                    <div role="heading" className="font-semibold">{header}</div>
                     <Divider />
                 </>
             )}
-            <CardBody className={header ? "p-3" : "px-3 py-1.5"}>{children}</CardBody>
-        </UiCard>
+            <div>
+                {children}
+            </div>
+        </div>
     );
 };
 Card.displayName = "Card";

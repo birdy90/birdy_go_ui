@@ -23,8 +23,8 @@ export const WithTitle: Story = {
     args: {
         header: "Card title",
         children: (
-            <div className="flex justify-center">
-                <i className="ri-arrow-left-up-line"></i>
+            <div className="flex items-center gap-2">
+                Icon is here:
                 <BiHome width={128} />
             </div>
         ),

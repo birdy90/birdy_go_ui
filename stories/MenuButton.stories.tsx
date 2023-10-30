@@ -1,6 +1,6 @@
 import {Meta, StoryObj} from "@storybook/react";
 import {BiHome, BiTrash} from "react-icons/bi";
-import {Button, MenuButton} from "../src";
+import {MenuButton} from "../src";
 
 export default {
     title: "Components/Button",
@@ -11,60 +11,38 @@ type Story = StoryObj<typeof MenuButton>;
 
 export const CommonMenuButton: Story = {
     args: {
-        children: <Button>Menu button</Button>,
-        items: [
-            {
-                label: "First item",
-            },
-            {
-                label: "Second item",
-            },
-            {
-                type: "divider",
-            },
-            {
-                label: "Third item",
-            },
+        trigger: "Menu button",
+        children: [
+            <MenuButton.Item>First item</MenuButton.Item>,
+            <MenuButton.Item>Second item</MenuButton.Item>,
+            <MenuButton.Divider />,
+            <MenuButton.Item>Third item</MenuButton.Item>,
         ],
     },
 };
 
 export const IconMenuButton: Story = {
     args: {
-        children: <Button icon={<BiHome />} />,
-        items: [
-            {
-                label: "First item",
-            },
-            {
-                label: "Second item",
-            },
-            {
-                type: "divider",
-            },
-            {
-                label: "Delete",
-                icon: <BiTrash />,
-                danger: true,
-            },
+        trigger: <BiHome />,
+        children: [
+            <MenuButton.Item>First item</MenuButton.Item>,
+            <MenuButton.Item>Second item</MenuButton.Item>,
+            <MenuButton.Divider />,
+            <MenuButton.Item>
+                <div className="text-danger-500 flex gap-2 items-center"><BiTrash /> Delete</div>
+            </MenuButton.Item>,
         ],
     },
 };
 
 export const MenuButtonClickHandlers: Story = {
     args: {
-        children: <Button icon={<BiHome />} />,
-        items: [
-            {
-                label: "First item",
-                onClick: () => console.log("First item clicked"),
-            },
-            {
-                label: "Delete",
-                icon: <BiTrash />,
-                danger: true,
-                onClick: () => console.log("Deleted"),
-            },
+        trigger: <BiHome />,
+        children: [
+            <MenuButton.Item>First item</MenuButton.Item>,
+            <MenuButton.Item>
+                <div className="text-danger-500 flex gap-2 items-center"><BiTrash /> Delete</div>
+            </MenuButton.Item>,
         ],
     },
 };

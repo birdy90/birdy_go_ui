@@ -22,8 +22,8 @@ type Story = StoryObj<typeof Tooltip>;
 export const Default: Story = {
     args: {
         content: (
-            <div className="flex gap-2">
-                Icon <BiHome className="shrink-0" width={24} /> inside
+            <div className="flex items-center gap-2">
+                Icon <BiHome className="inline shrink-0" /> inside
             </div>
         ),
     },

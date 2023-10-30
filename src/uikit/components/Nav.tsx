@@ -1,6 +1,5 @@
-import {Divider} from "@nextui-org/divider";
 import {Fragment} from "react";
-import {Button, MenuItemProps} from "../";
+import {Button, Divider, MenuItemProps} from "../";
 import {clsx} from "clsx";
 
 export interface NavProps {
@@ -15,7 +14,6 @@ export const Nav = (props: NavProps) => {
     const wrapperClassNames = clsx(
         "relative flex gap-1",
         props.vertical ? "flex-col" : "h-10 py-1",
-        props.className,
     );
 
     return (
@@ -30,10 +28,11 @@ export const Nav = (props: NavProps) => {
                 } else if (typeof item.label === "object") {
                     return <Fragment key={key}>{item.label}</Fragment>;
                 } else {
+                    const isIconOnly = item.icon && !item.label;
                     const buttonClassNames = clsx(
                         "h-8",
-                        item.icon && !item.label && "w-8 min-w-0 px-0",
-                        props.vertical ? "justify-start" : "",
+                        isIconOnly && "w-8 min-w-0 px-0",
+                        isIconOnly ? "" : "justify-start",
                     );
 
                     const onClickHandler = () => {
@@ -48,7 +47,8 @@ export const Nav = (props: NavProps) => {
                         <Button
                             key={key}
                             className={buttonClassNames}
-                            variant={props.active ? "flat" : "light"}
+                            variant={props.active ? "solid" : "light"}
+                            small
                             color="default"
                             icon={item.icon}
                             onClick={onClickHandler}

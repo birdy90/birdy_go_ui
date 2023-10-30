@@ -1,13 +1,11 @@
 import {ColumnDef, ColumnSort} from "@tanstack/react-table";
 import {AriaAttributes, ChangeEvent, FocusEvent, PropsWithChildren, ReactElement, ReactNode} from "react";
 
-export const ColorTypeValues = ["default", "primary", "secondary", "success", "warning", "danger"] as const;
-export const ButtonVariantValues = ["solid", "faded", "bordered", "light", "flat", "ghost", "shadow"] as const;
-export const RadiusVariants = ["full", "lg", "md", "sm", "none"] as const;
+export const ColorTypeValues = ["default", "primary", "secondary", "danger"] as const;
+export const ButtonVariantValues = ["solid", "bordered", "light"] as const;
 
 export type ColorType = (typeof ColorTypeValues)[number];
 export type ButtonVariants = (typeof ButtonVariantValues)[number];
-export type RadiusType = (typeof RadiusVariants)[number];
 
 export interface MenuItemProps {
     key?: string;

@@ -1,13 +1,4 @@
 import {
-    SortDescriptor,
-    TableBody,
-    TableCell,
-    TableColumn,
-    TableHeader,
-    TableRow,
-    Table as UiTable,
-} from "@nextui-org/react";
-import {
     ColumnFiltersState,
     flexRender,
     getCoreRowModel,
@@ -16,8 +7,29 @@ import {
     SortingState,
     useReactTable,
 } from "@tanstack/react-table";
+import {Cell, Column, ColumnProps, Row, Table as UiTable, TableBody, TableHeader, SortDescriptor} from 'react-aria-components';
 import {useState} from "react";
 import {TableProps} from "../";
+import {clsx} from "clsx";
+import {BsArrowDownUp, BsArrowUp, BsArrowDown} from "react-icons/bs";
+
+function MyColumn<T extends object>(props: ColumnProps<T>) {
+    return (
+        <Column {...props} className="sticky top-0 text-left py-1 px-2 border-b border-border bg-white">
+            {(colProps) => <>
+                <span className="flex gap-2 items-center whitespace-nowrap">
+                    {typeof props.children === 'function' ? props.children(colProps) : props.children}
+                    {colProps.allowsSorting && colProps.sortDirection && (
+                        <span aria-hidden="true">
+                            {colProps.sortDirection === 'ascending' ? <BsArrowUp /> : <BsArrowDown />}
+                        </span>
+                    )}
+                    {colProps.allowsSorting && !colProps.sortDirection && <BsArrowDownUp aria-hidden="true" className="text-gray-400" />}
+                </span>
+            </>}
+        </Column>
+    );
+}
 
 export const Table = <TData = unknown,>(props: TableProps<TData>) => {
     const [sorting, setSorting] = useState<SortingState>(props.initialSort ? [props.initialSort] : []);
@@ -56,12 +68,16 @@ export const Table = <TData = unknown,>(props: TableProps<TData>) => {
         ];
         setSorting(sortingState);
     }
+
+    const tableClasses = clsx(
+        props.className,
+        'w-full border-separate border-spacing-0',
+    )
+
     return (
         <UiTable
-            classNames={{table: props.className}}
-            removeWrapper
+            className={tableClasses}
             aria-label="Data table"
-            isHeaderSticky
             onSortChange={onSort}
             sortDescriptor={sortDescriptor}
         >
@@ -69,13 +85,15 @@ export const Table = <TData = unknown,>(props: TableProps<TData>) => {
                 <TableHeader key={headerGroup.id}>
                     {headerGroup.headers.map((header) => {
                         return (
-                            <TableColumn
+                            <MyColumn
+                                id={header.id}
                                 key={header.id}
                                 style={{width: header.getSize()}}
                                 allowsSorting={header.column.getCanSort()}
+                                isRowHeader={true}
                             >
                                 {flexRender(header.column.columnDef.header, header.getContext())}
-                            </TableColumn>
+                            </MyColumn>
                         );
                     })}
                 </TableHeader>
@@ -84,13 +102,13 @@ export const Table = <TData = unknown,>(props: TableProps<TData>) => {
             <TableBody>
                 {rows.map((row) => {
                     return (
-                        <TableRow data-row={row.index} key={row.id}>
+                        <Row data-row={row.index} className="odd:bg-gray-50 hover:bg-gray-100" key={row.id}>
                             {row.getVisibleCells().map((cell) => (
-                                <TableCell key={cell.id} style={{width: cell.column.getSize()}}>
+                                <Cell key={cell.id} className="px-2 py-0.5" style={{width: cell.column.getSize()}}>
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                </TableCell>
+                                </Cell>
                             ))}
-                        </TableRow>
+                        </Row>
                     );
                 })}
             </TableBody>
