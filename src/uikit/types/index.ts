@@ -43,6 +43,7 @@ export interface BaseInputProps extends BaseControlProps {
     placeholder?: string;
     readOnly?: boolean;
     required?: boolean;
+    large?: boolean;
 }
 
 export interface ListOption {

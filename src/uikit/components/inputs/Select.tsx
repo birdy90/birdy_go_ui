@@ -15,6 +15,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     (props, forwardRef) => {
         const id = useId();
         const {
+            large = false,
             overrideClassName,
             className,
             label,
@@ -24,7 +25,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 
         const selectButtonClasses = overrideClassName ?? clsx(
             'flex items-center w-full justify-between',
-            inputCommonClasses(Boolean(props.errorMessage)),
+            inputCommonClasses(Boolean(props.errorMessage), large),
             className,
         );
 

@@ -12,6 +12,7 @@ export interface InputProps extends BaseInputProps {
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((
     {
+        large = false,
         overrideClassName,
         className,
         label = '',
@@ -20,7 +21,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((
     ref
 ) => {
     const inputClasses = overrideClassName ?? clsx(
-        inputCommonClasses(Boolean(props.errorMessage)),
+        inputCommonClasses(Boolean(props.errorMessage), large),
         className,
     );
 
