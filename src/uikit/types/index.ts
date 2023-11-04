@@ -32,13 +32,14 @@ export interface BaseControlProps extends PropsWithChildren, AriaAttributes {
 }
 
 export interface BaseInputProps extends BaseControlProps {
+    className?: string;
     label?: string;
     description?: string;
     errorMessage?: string;
     name?: string;
     value?: string;
     defaultValue?: string;
-    onChange?: (e: ChangeEvent) => void;
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
     onFocus?: (e: FocusEvent) => void;
     placeholder?: string;
     readOnly?: boolean;

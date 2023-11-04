@@ -1,7 +1,7 @@
 import {Meta, StoryObj} from "@storybook/react";
-import {BiPlanet} from "react-icons/bi";
-import {Button, ConfirmModal, Modal, ModalProps, useModal} from "../src";
+import {Button, FormInput, FormSelect, Modal, ModalProps, useModal} from "../src";
 import {FC} from "react";
+import {FormModal} from "../src/uikit/components/modals/FormModal";
 
 const StoryRenderComponent = (args: ModalProps, as: FC<ModalProps> = Modal) => {
     const Component = as;
@@ -21,32 +21,25 @@ const StoryRenderComponent = (args: ModalProps, as: FC<ModalProps> = Modal) => {
 
 export default {
     title: "Components/Modal",
-    component: Modal,
+    component: FormModal,
     render: (args) => StoryRenderComponent(args),
-} as Meta<typeof Modal>;
+} as Meta<typeof FormModal>;
 
-type Story = StoryObj<typeof Modal>;
+type Story = StoryObj<typeof FormModal>;
 
 const commonArgs = {
     header: 'Some modal!',
-    children: (
-        <div className="flex justify-center">
-            <BiPlanet size={128} />
-        </div>
-    ),
 }
 
-export const Default: Story = {
+export const WithForm: Story = {
     args: {
         ...commonArgs,
-        header: undefined,
-        children: 'Be notified!'
+        header: 'Tell us about yourself',
+        children: <div className="flex flex-col gap-2">
+            <FormInput name="name" label="Full name" />
+            <FormSelect name="gender" label="Gender" defaultValue={undefined} options={[{value: 'm', label: 'Male'}, {value: 'f', label: 'Female'}]} />
+        </div>,
+        defaultValues: { name: '', gender: '' },
     },
-};
-
-export const Confirm: Story = {
-    args: {
-        ...commonArgs,
-    },
-    render: (args) => StoryRenderComponent(args, ConfirmModal),
+    render: (args) => StoryRenderComponent(args, FormModal),
 };

@@ -48,7 +48,6 @@ export const Nav = (props: NavProps) => {
                             key={key}
                             className={buttonClassNames}
                             variant={props.active ? "solid" : "light"}
-                            small
                             color="default"
                             icon={item.icon}
                             onClick={onClickHandler}

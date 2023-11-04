@@ -1,21 +1,22 @@
 import {atom, useAtom} from "jotai";
-import {useEffect} from "react";
+import {useEffect, useId} from "react";
 
-interface ModalStateOptional {
+export interface ModalState {
+    id: string;
     isOpen: boolean;
     value?: unknown;
+    onChange?: (value: unknown) => void;
 }
 
-interface ModalState extends ModalStateOptional {
+interface ModalOptions {
     id: string;
+    defaultOpen?: boolean;
+    onChange?: (value: unknown) => void;
+    defaultValue?: unknown;
 }
 
-interface ModalOptions extends Partial<ModalStateOptional> {
-    id: string;
-}
-
-interface ModalStore {
-    modal: ModalState;
+export interface ModalStore {
+    modalState: ModalState;
     open: () => void;
     close: () => void;
     setValue: (value: unknown) => void;
@@ -24,7 +25,8 @@ interface ModalStore {
 const modalsAtom = atom<ModalState[]>([])
 
 export const useModal = (props: ModalOptions): ModalStore => {
-    const {id, isOpen: defaultOpen = false, value: defaultValue = null} = props;
+    const generatedId = useId();
+    const {id, defaultOpen = false, defaultValue} = props;
     const [atom, setAtom] = useAtom(modalsAtom);
 
     const modal = atom.find(t => t.id === id);
@@ -46,6 +48,7 @@ export const useModal = (props: ModalOptions): ModalStore => {
         const modalIndex = atom.findIndex(t => t.id === id);
         if (atom[modalIndex]?.isOpen) return;
         atom[modalIndex].isOpen = true;
+        atom[modalIndex].value = defaultValue;
         setAtom([...atom]);
     }
 
@@ -54,6 +57,7 @@ export const useModal = (props: ModalOptions): ModalStore => {
         if (!atom[modalIndex]?.isOpen) return;
         atom[modalIndex].isOpen = false;
         setAtom([...atom]);
+        props.onChange?.(atom[modalIndex].value);
     }
 
     function setValue(value: unknown) {
@@ -64,7 +68,7 @@ export const useModal = (props: ModalOptions): ModalStore => {
     }
 
     return {
-        modal: modal ?? {id: '/default/', isOpen: false, value: 0},
+        modalState: modal ?? {id: generatedId, isOpen: false, value: 0},
         open: openModal,
         close: closeModal,
         setValue,

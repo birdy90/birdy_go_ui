@@ -1,82 +1,79 @@
-import {forwardRef, useId} from "react";
-import {BaseInputProps, ListOption} from "../../";
+import {forwardRef, Key, useState} from "react";
+import {BaseInputProps, Button, ListOption} from "../../";
 import {inputCommonClasses} from "../../constants.ts";
+import {BiChevronDown} from 'react-icons/bi';
 import {clsx} from "clsx";
+import {Item, Select as UiSelect, ListBox, Popover, SelectValue} from "react-aria-components";
 
-export interface SelectProps extends Omit<BaseInputProps, 'value' | 'defaultValue'> {
-    className?: string;
+export interface SelectProps extends Omit<BaseInputProps, 'value' | 'defaultValue' | 'onChange'> {
     overrideClassName?: string;
+    wrapperClassName?: string;
     options?: ListOption[];
     value?: string | string[];
     defaultValue?: string | string[];
+    onChange?: (data: string | string[]) => void;
 }
 
-export const Select = forwardRef<HTMLSelectElement, SelectProps>(
+export const Select = forwardRef<HTMLDivElement, SelectProps>(
     (props, forwardRef) => {
-        const id = useId();
+        const [item, setItem] = useState<string | string[] | undefined>(props.defaultValue);
+        const [open, setOpen] = useState(false);
+
         const {
             large = false,
             overrideClassName,
+            wrapperClassName,
             className,
             label,
             options = [],
+            onChange,
             ...otherProps
         } = props;
 
+        const selectControlClasses = clsx(
+            'flex flex-col gap-1 w-full',
+            wrapperClassName,
+        )
+
         const selectButtonClasses = overrideClassName ?? clsx(
-            'flex items-center w-full justify-between',
+            'flex items-center w-full justify-between truncate',
             inputCommonClasses(Boolean(props.errorMessage), large),
             className,
         );
 
+        const selectItemClasses = clsx(
+            'px-2 py-1 rounded cursor-pointer truncate',
+            'focus-visible:outline-none focus-visible:bg-gray-100',
+            'aria-selected:bg-gray-100',
+        );
+
+        function onValueChange(data: unknown) {
+            setItem(data?.toString());
+            if (data) {
+                onChange?.(data.toString());
+            }
+        }
+
         return (
-            <div className="flex flex-col gap-1">
+            <UiSelect className={selectControlClasses} ref={forwardRef} onSelectionChange={onValueChange} onOpenChange={setOpen} defaultSelectedKey={props.defaultValue as Key}>
                 {label && <label>{label} {props.required && <span className="text-danger-500">*</span>}</label>}
-                <select ref={forwardRef} className={selectButtonClasses} {...otherProps} id={props.id ?? id}>
-                    {options.filter(t => t.value !== undefined).map((item) => (
-                        <option key={item.value as string | number} value={item.value}>
-                            {item.label}
-                        </option>
-                    ))}
-                </select>
+                <Button overrideClassName={selectButtonClasses}>
+                    <SelectValue className={clsx(!item && 'text-gray-400')} defaultValue={props.defaultValue} {...otherProps} />
+                    <span aria-hidden="true" className={clsx(open && 'rotate-180', 'transition-transform')}><BiChevronDown /></span>
+                </Button>
                 {props.errorMessage && <div className="text-sm text-danger-500" slot="errorMessage">{props.errorMessage}</div>}
                 {!props.errorMessage && props.description && <div className="text-sm" slot="description">{props.description}</div>}
-            </div>
 
-            // <UiSelect placeholder={props.placeholder} className="relative">
-            //     <Label>{props.label}</Label>
-            //     <Button overrideClassName={selectButtonClasses}>
-            //         <SelectValue />
-            //         <div className="flex gap-2 items-center">
-            //             <SelectClearButton />
-            //             <BsChevronDown />
-            //         </div>
-            //     </Button>
-            //     {/*{props.errorMessage && <Text className="text-sm text-danger-500" slot="errorMessage">{props.errorMessage}</Text>}*/}
-            //     {/*{!props.errorMessage && props.description && <Text className="text-sm" slot="description">{props.description}</Text>}*/}
-            //     <Popover className="shadow rounded border-border min-w-[180px] max-h-5 overflow-auto">
-            //         <ListBox className="focus-visible:outline-none p-1" items={options.map(t => ({id: t.value, name: t.label}))}>
-            //             {(item) => <Item className="px-2 py-1 cursor-pointer focus-visible:outline-none focus-visible:bg-border rounded">{item.name}</Item>}
-            //         </ListBox>
-            //     </Popover>
-            // </UiSelect>
-
-            // <UiSelect
-            //     ref={forwardRef}
-            //     id={id}
-            //     labelPlacement={"outside"}
-            //     placeholder={props.placeholder ?? ' '}
-            //     size="sm"
-            //     defaultSelectedKeys={props.defaultValue}
-            //     popoverProps={{className: 'min-w-[150px] p-0.5'}}
-            //     {...otherProps}
-            // >
-            //     {options.filter(t => t.value !== undefined).map((item) => (
-            //         <SelectItem key={item.value as string | number} value={item.value}>
-            //             {item.label}
-            //         </SelectItem>
-            //     ))}
-            // </UiSelect>
+                <Popover>
+                    <ListBox className="shadow bg-white p-1 rounded focus-visible:outline-none">
+                        {options.filter(t => t.value !== undefined).map((item) => (
+                            <Item key={item.value as string | number} id={item.value} className={selectItemClasses}>
+                                {item.label}
+                            </Item>
+                        ))}
+                    </ListBox>
+                </Popover>
+            </UiSelect>
         );
     }
 );

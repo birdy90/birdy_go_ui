@@ -5,12 +5,12 @@ import { Divider } from "./";
 
 export interface CardProps extends React.HTMLAttributes<Element> {
     color?: ColorType;
-    extendClassName?: string;
+    overrideClassName?: string;
     header?: React.ReactNode;
     children?: React.ReactNode;
 }
 
-export const Card = ({className, extendClassName, header, children, color, ...props}: CardProps) => {
+export const Card = ({className, overrideClassName, header, children, color, ...props}: CardProps) => {
     const colorMapping: Record<ColorType, string> = {
         default: "bg-gray-100",
         primary: "bg-primary-100",
@@ -18,10 +18,10 @@ export const Card = ({className, extendClassName, header, children, color, ...pr
         danger: "bg-danger-100",
     };
 
-    const cardClasses = className ?? clsx(
+    const cardClasses = overrideClassName ?? clsx(
         'rounded-lg border border-border px-3 py-2 shadow',
         color && colorMapping[color],
-        extendClassName,
+        className,
     );
 
     return (
