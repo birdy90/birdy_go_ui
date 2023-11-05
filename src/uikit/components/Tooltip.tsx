@@ -10,7 +10,7 @@ export const Tooltip = ({content, children}: TooltipProps) => {
     return (
         <TooltipTrigger>
             <Button overrideClassName="rounded">{children}</Button>
-            <UiTooltip className="border border-border shadow px-2 py-1" offset={5}>
+            <UiTooltip className="border border-border dark:border-border-dark bg-white dark:bg-gray-900 rounded shadow px-2 py-1" offset={5}>
                 <OverlayArrow />
 
                 {content}

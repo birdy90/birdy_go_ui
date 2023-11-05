@@ -10,16 +10,17 @@ export interface CardProps extends React.HTMLAttributes<Element> {
     children?: React.ReactNode;
 }
 
-export const Card = ({className, overrideClassName, header, children, color, ...props}: CardProps) => {
+export const Card = ({className, overrideClassName, header, children, color = 'white', ...props}: CardProps) => {
     const colorMapping: Record<ColorType, string> = {
-        default: "bg-gray-100",
-        primary: "bg-primary-100",
-        secondary: "bg-secondary-100",
-        danger: "bg-danger-100",
+        white: "bg-white dark:bg-gray-800",
+        default: "bg-gray-100 dark:bg-gray-500/25",
+        primary: "bg-primary-100 dark:bg-primary-500/25",
+        secondary: "bg-secondary-100 dark:bg-secondary-500/25",
+        danger: "bg-danger-200 dark:bg-danger-500/30",
     };
 
     const cardClasses = overrideClassName ?? clsx(
-        'rounded-lg border border-border px-3 py-2 shadow',
+        'rounded-lg border dark:border-border-dark border-border px-3 py-2 shadow',
         color && colorMapping[color],
         className,
     );

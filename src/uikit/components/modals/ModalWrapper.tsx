@@ -1,13 +1,18 @@
 import {PropsWithChildren} from "react";
 import {Dialog, Modal as UiModal, ModalOverlay} from 'react-aria-components';
 import {ModalState} from "../../hooks";
+import {clsx} from "clsx";
 
 interface ModalWrapperProps extends PropsWithChildren {
     modalState: ModalState;
 }
 
 export const ModalWrapper = (props: ModalWrapperProps) => {
-    const overlayClasses = 'fixed inset-0 z-10 overflow-y-auto bg-white/25 flex min-h-[100dvh] w-[100dvw] items-center justify-center p-4 text-center backdrop-blur-[1px]';
+    const overlayClasses = clsx(
+        'flex items-center justify-center fixed text-center',
+        'inset-0 z-10 overflow-y-auto min-h-[100dvh] w-[100dvw] p-4',
+        'bg-white/25 dark:bg-black/25 backdrop-blur-[1px]'
+    );
 
     return (
         <ModalOverlay className={overlayClasses} isOpen={props.modalState.isOpen}>

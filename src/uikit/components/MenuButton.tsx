@@ -16,7 +16,7 @@ export interface MenuButtonItemProps extends PropsWithChildren {
 const MenuButtonItem = (props: MenuButtonItemProps) => {
     const itemClasses = clsx(
         'cursor-pointer px-2 py-1 rounded',
-        'focus-visible:outline-none focus-visible:bg-gray-100',
+        'focus-visible:outline-none focus-visible:bg-gray-100 dark:focus-visible:bg-gray-700',
         props.className,
     );
 
@@ -36,7 +36,7 @@ export const MenuButton = (props: MenuButtonProps) => {
             </Button>
 
             <Popover>
-                <Card extendClassName="!p-1">
+                <Card className="!p-1">
                     <Menu className="outline-none">
                         {props.children}
                     </Menu>
@@ -48,6 +48,6 @@ export const MenuButton = (props: MenuButtonProps) => {
 MenuButton.displayName = "MenuButton";
 MenuButton.Item = MenuButtonItem;
 
-MenuButton.Divider = () => <Separator className="border-b border-border my-1" />;
+MenuButton.Divider = () => <Separator className="border-b border-border dark:border-border-dark my-1" />;
 
 

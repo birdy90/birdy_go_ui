@@ -1,7 +1,7 @@
 import {ColumnDef, ColumnSort} from "@tanstack/react-table";
 import {AriaAttributes, ChangeEvent, FocusEvent, PropsWithChildren, ReactElement, ReactNode} from "react";
 
-export const ColorTypeValues = ["default", "primary", "secondary", "danger"] as const;
+export const ColorTypeValues = ["white", "default", "primary", "secondary", "danger"] as const;
 export const ButtonVariantValues = ["solid", "bordered", "light"] as const;
 
 export type ColorType = (typeof ColorTypeValues)[number];

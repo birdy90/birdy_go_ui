@@ -15,7 +15,7 @@ import {BsArrowDownUp, BsArrowUp, BsArrowDown} from "react-icons/bs";
 
 function MyColumn<T extends object>(props: ColumnProps<T>) {
     return (
-        <Column {...props} className="sticky top-0 text-left py-1 px-2 border-b border-border bg-white">
+        <Column {...props} className="sticky top-0 text-left py-1 px-2 border-b border-border bg-white dark:bg-gray-900">
             {(colProps) => <>
                 <span className="flex gap-2 items-center whitespace-nowrap">
                     {typeof props.children === 'function' ? props.children(colProps) : props.children}
@@ -102,7 +102,7 @@ export const Table = <TData = unknown,>(props: TableProps<TData>) => {
             <TableBody>
                 {rows.map((row) => {
                     return (
-                        <Row data-row={row.index} className="odd:bg-gray-50 hover:bg-gray-100" key={row.id}>
+                        <Row data-row={row.index} className="odd:bg-gray-50 hover:bg-gray-100 dark:odd:bg-gray-900 dark:hover:bg-gray-800" key={row.id}>
                             {row.getVisibleCells().map((cell) => (
                                 <Cell key={cell.id} className="px-2 py-0.5" style={{width: cell.column.getSize()}}>
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

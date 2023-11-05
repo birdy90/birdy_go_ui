@@ -1,8 +1,13 @@
 import type { Preview } from "@storybook/react";
-import {UikitProvider} from '../src';
 import '../src/global.css';
+import {withThemeByClassName} from "@storybook/addon-themes";
 
 const preview: Preview = {
+  globalTypes: {
+    darkMode: {
+      defaultValue: true, // tailwind default
+    },
+  },
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
@@ -12,13 +17,16 @@ const preview: Preview = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <UikitProvider>
-        <Story />
-      </UikitProvider>
-    ),
-  ],
 };
+
+export const decorators = [
+    withThemeByClassName({
+      themes: {
+        light: 'light',
+        dark: 'dark',
+      },
+      defaultTheme: 'dark',
+    }),
+];
 
 export default preview;

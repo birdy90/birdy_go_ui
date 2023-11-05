@@ -3,6 +3,7 @@ import {cloneElement, HTMLAttributes, ReactElement} from "react";
 import {ButtonVariants, ColorType, Loader} from "../";
 import {clsx} from "clsx";
 import {focusOutlineClasses} from "../constants.ts";
+import {twMerge} from "tailwind-merge";
 
 export interface ButtonProps extends Omit<HTMLAttributes<Element>, "shape" | "size"> {
     overrideClassName?: string;
@@ -41,23 +42,28 @@ export const Button = (buttonProps: ButtonProps) => {
         : null;
 
     const buttonColorClasses: Record<ColorType, string> = {
+        white: '',
         primary: clsx(
+            'dark:text-primary-400',
             'bg-primary-400 border-primary-400 text-primary-500',
             'hover:bg-primary-500 hover:border-primary-500',
             'active:bg-primary-600 active:border-primary-600',
         ),
         secondary: clsx(
+            'dark:text-secondary-400',
             'bg-secondary-400 border-secondary-400 text-secondary-500',
             'hover:bg-secondary-500 hover:border-secondary-500',
             'active:bg-secondary-600 active:border-secondary-600',
         ),
         danger: clsx(
-            'bg-danger-400 border-danger-400 text-danger-500',
-            'hover:bg-danger-500 hover:border-danger-500',
-            'active:bg-danger-600 active:border-danger-600',
+            'dark:text-danger-500',
+            'bg-danger-500 border-danger-500 text-danger-600',
+            'hover:bg-danger-600 hover:border-danger-600',
+            'active:bg-danger-700 active:border-danger-700',
         ),
         default: clsx(
-            'bg-gray-400 border-gray-200 text-gray-900',
+            'dark:bg-gray-500 dark:text-gray-50',
+            'bg-gray-400 border-gray-500 text-gray-900',
             'hover:bg-gray-500 hover:border-gray-500',
             'active:bg-gray-600 active:border-gray-600',
         ),
@@ -65,11 +71,11 @@ export const Button = (buttonProps: ButtonProps) => {
 
     const buttonVariantClasses: Record<ButtonVariants, string> = {
         solid: '!text-white',
-        bordered: 'border-2 bg-opacity-0 hover:bg-opacity-10 active:bg-opacity-20',
-        light: 'bg-opacity-0 hover:bg-opacity-10 active:bg-opacity-20',
+        bordered: 'border-2 !bg-opacity-0 hover:!bg-opacity-10 active:!bg-opacity-20',
+        light: '!bg-opacity-0 hover:!bg-opacity-10 active:!bg-opacity-20',
     };
 
-    const buttonClasses = overrideClassName !== undefined ? clsx(
+    const buttonClasses = twMerge(overrideClassName !== undefined ? clsx(
         overrideClassName,
         focusOutlineClasses,
     ) : clsx(
@@ -84,7 +90,7 @@ export const Button = (buttonProps: ButtonProps) => {
         large ? 'h-10' : 'h-8',
         isDisabled && 'opacity-50 pointer-events-none',
         className,
-    );
+    ));
 
     return (
         <UiButton

@@ -34,7 +34,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((
         <TextField className={wrapperClassName}>
             <div className="flex flex-col gap-1 w-full">
                 {label && <Label>{label} {props.required && <span className="text-danger-500">*</span>}</Label>}
+
                 <UiInput id={props.id} ref={ref} className={inputClasses} {...props} />
+
                 {errorMessage && <Text className="text-sm text-danger-500" slot="errorMessage">{errorMessage}</Text>}
                 {!errorMessage && props.description && <Text className="text-sm" slot="description">{props.description}</Text>}
             </div>
