@@ -31,8 +31,7 @@ export const Nav = (props: NavProps) => {
                     const isIconOnly = item.icon && !item.label;
                     const buttonClassNames = clsx(
                         "h-8",
-                        isIconOnly && "w-8 min-w-0 px-0",
-                        isIconOnly ? "" : "justify-start",
+                        isIconOnly ? "w-8 min-w-0 px-0" : "flex !justify-start px-1.5",
                     );
 
                     const onClickHandler = () => {
