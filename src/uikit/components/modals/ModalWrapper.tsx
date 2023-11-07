@@ -4,7 +4,7 @@ import {ModalState} from "../../hooks";
 import {clsx} from "clsx";
 
 interface ModalWrapperProps extends PropsWithChildren {
-    modalState: ModalState;
+    modalState?: ModalState;
 }
 
 export const ModalWrapper = (props: ModalWrapperProps) => {
@@ -15,7 +15,7 @@ export const ModalWrapper = (props: ModalWrapperProps) => {
     );
 
     return (
-        <ModalOverlay className={overlayClasses} isOpen={props.modalState.isOpen}>
+        <ModalOverlay className={overlayClasses} isOpen={props.modalState?.isOpen}>
             <UiModal className="bg-white rounded-xl min-w-[400px]">
                 <Dialog className="outline-none">
                     {props.children}

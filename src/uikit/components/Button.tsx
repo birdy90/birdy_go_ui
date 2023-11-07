@@ -44,25 +44,32 @@ export const Button = (buttonProps: ButtonProps) => {
     const buttonColorClasses: Record<ColorType, string> = {
         white: '',
         primary: clsx(
-            'dark:text-primary-400',
+            'dark:bg-primary-700 dark:text-primary-400',
+
             'bg-primary-400 border-primary-400 text-primary-500',
             'hover:bg-primary-500 hover:border-primary-500',
             'active:bg-primary-600 active:border-primary-600',
         ),
         secondary: clsx(
-            'dark:text-secondary-400',
-            'bg-secondary-400 border-secondary-400 text-secondary-500',
-            'hover:bg-secondary-500 hover:border-secondary-500',
-            'active:bg-secondary-600 active:border-secondary-600',
+            'dark:bg-secondary-600 dark:text-secondary-400',
+            'dark:hover:bg-secondary-700',
+            'dark:active:bg-secondary-800',
+
+            'bg-secondary-400 border-secondary-500 text-secondary-500',
+            'hover:bg-secondary-500 hover:border-secondary-600',
+            'active:bg-secondary-600 active:border-secondary-700',
         ),
         danger: clsx(
-            'dark:text-danger-500',
+            'dark:bg-danger-600 dark:text-danger-400',
+            'dark:hover:bg-danger-700',
+            'dark:active:bg-danger-800',
+
             'bg-danger-500 border-danger-500 text-danger-600',
             'hover:bg-danger-600 hover:border-danger-600',
             'active:bg-danger-700 active:border-danger-700',
         ),
         default: clsx(
-            'dark:bg-gray-500 dark:text-gray-50',
+            'dark:bg-gray-700 dark:text-gray-50',
             'bg-gray-400 border-gray-500 text-gray-900',
             'hover:bg-gray-500 hover:border-gray-500',
             'active:bg-gray-600 active:border-gray-600',
