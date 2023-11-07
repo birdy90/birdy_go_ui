@@ -2,19 +2,10 @@ import {Meta, StoryObj} from "@storybook/react";
 import {Nav, NavProps} from "../src";
 import {BiHome} from "react-icons/bi";
 
-const lengthOfStrings = 7;
-
-const randomString = (len: number) => {
-    return [...Array(len)].map(() => Math.random().toString(36)[2]).join("");
-};
-
 const dataGenerator = (len: number) =>
     Array(len)
         .fill(0)
-        .map(() => {
-            const label = randomString(lengthOfStrings);
-            return label.charAt(0).toUpperCase() + label.slice(1);
-        });
+        .map((_, i) => `Menu ${i}`);
 
 const newMenuItem = (dataItem: string) => ({label: dataItem, onClick: () => console.log("click")});
 

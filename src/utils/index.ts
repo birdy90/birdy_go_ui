@@ -1,7 +1,6 @@
 export * from "./combinedRef";
 export * from "./copyToClipboard";
 export * from "./datetime";
-export * from "./mailsend";
 export * from "./observer";
 export * from "./preloadImage";
 export * from "./randomString";

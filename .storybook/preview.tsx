@@ -3,11 +3,7 @@ import '../src/global.css';
 import {withThemeByClassName} from "@storybook/addon-themes";
 
 const preview: Preview = {
-  globalTypes: {
-    darkMode: {
-      defaultValue: true, // tailwind default
-    },
-  },
+  globalTypes: {},
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
@@ -25,7 +21,7 @@ export const decorators = [
         light: 'light',
         dark: 'dark',
       },
-      defaultTheme: 'dark',
+      defaultTheme: 'light',
     }),
 ];
 

@@ -1,6 +1,6 @@
 import {Meta, StoryObj} from "@storybook/react";
 import {BiHome} from "react-icons/bi";
-import {Card} from "../src";
+import {Card, ColorTypeValues} from "../src";
 
 export default {
     title: "Components/Card",
@@ -9,24 +9,30 @@ export default {
 
 type Story = StoryObj<typeof Card>;
 
+const commonArgs = {
+    header: "Card title",
+    children: (
+        <div className="flex justify-center">
+            <BiHome width={128} />
+        </div>
+    ),
+}
+
 export const Default: Story = {
     args: {
-        children: (
-            <div className="flex justify-center">
-                <BiHome width={128} />
-            </div>
-        ),
+        ...commonArgs,
     },
 };
 
-export const WithTitle: Story = {
+export const Colors: Story = {
     args: {
-        header: "Card title",
-        children: (
-            <div className="flex items-center gap-2">
-                Icon is here:
-                <BiHome width={128} />
-            </div>
-        ),
+        ...commonArgs,
+    },
+    render: (args) => {
+        return <div className="flex flex-wrap gap-2">
+            {ColorTypeValues.map(color => {
+                return <Card {...args} color={color} className="w-96" />
+            })}
+        </div>;
     },
 };

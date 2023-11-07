@@ -20,9 +20,14 @@ export const Card = ({className, overrideClassName, header, children, color = 'w
     };
 
     const cardClasses = overrideClassName ?? clsx(
-        'rounded-lg border dark:border-border-dark border-border px-3 py-2 shadow',
+        'rounded-lg px-3 py-2 shadow',
         color && colorMapping[color],
+        !color && 'border dark:border-border-dark border-border',
         className,
+    );
+
+    const dividerClasses = clsx(
+        color !== 'white' && 'border-border-dark/10',
     );
 
     return (
@@ -30,7 +35,7 @@ export const Card = ({className, overrideClassName, header, children, color = 'w
             {header && (
                 <>
                     <div role="heading" className="font-semibold">{header}</div>
-                    <Divider />
+                    <Divider className={dividerClasses} />
                 </>
             )}
             <div>

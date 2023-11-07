@@ -1,5 +1,4 @@
 import {ColumnDef, createColumnHelper} from "@tanstack/react-table";
-import {randomString} from "./randomString";
 
 const columnHelper = createColumnHelper();
 const columnsGenerator = (len: number, size: number) => {
@@ -14,10 +13,10 @@ const columnsGenerator = (len: number, size: number) => {
 
 export const tableDataGenerator = (columnLen: number, len: number, stringLen = 7) => {
     const columns = columnsGenerator(columnLen, stringLen * 15);
-    const data = [...Array(len)].map(() => {
+    const data = [...Array(len)].map((_, i) => {
         const rowData = {};
-        columns.forEach((column) => {
-            rowData[column.id as never] = randomString(stringLen) as never;
+        columns.forEach((column, j) => {
+            rowData[column.id as never] = `Cell data ${i}-${j}` as never;
         });
         return rowData;
     });
