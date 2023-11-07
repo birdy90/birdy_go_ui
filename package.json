@@ -23,8 +23,11 @@
     "publish:prod": "npm run build && npm publish --access public",
     "publish:check": "npm run build && npm publish --dry-run",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook:build": "storybook build"
   },
+  "precommit": [
+    "storybook:build"
+  ],
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
@@ -51,6 +54,7 @@
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "autoprefixer": "^10.4.16",
+    "chromatic": "^7.6.0",
     "clsx": "^2.0.0",
     "dayjs": "^1.11.10",
     "eslint": "^8.45.0",
@@ -61,6 +65,7 @@
     "next-themes": "^0.2.1",
     "nodemailer": "6.9.6",
     "postcss": "^8.4.31",
+    "pre-commit": "^1.2.2",
     "react-aria": "^3.29.1",
     "react-aria-components": "^1.0.0-beta.2",
     "react-hook-form": "^7.47.0",
