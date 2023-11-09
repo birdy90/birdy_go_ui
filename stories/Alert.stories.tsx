@@ -1,5 +1,4 @@
 import {Meta, StoryObj} from "@storybook/react";
-import {BiHome} from "react-icons/bi";
 import {Alert, ColorTypeValues} from "../src";
 
 export default {
@@ -8,16 +7,6 @@ export default {
 } as Meta<typeof Alert>;
 
 type Story = StoryObj<typeof Alert>;
-
-export const Default: Story = {
-    args: {
-        children: (
-            <div className="flex justify-center">
-                <BiHome width={128} />
-            </div>
-        ),
-    },
-};
 
 export const WithTitle: Story = {
     args: {

@@ -2,7 +2,6 @@ import {Meta, StoryObj} from "@storybook/react";
 import {Table} from "../src";
 import {tableDataGenerator} from "../src/utils";
 
-const tableData = tableDataGenerator(3, 30, 5);
 const wideTableData = tableDataGenerator(15, 30, 5);
 
 export default {
@@ -22,13 +21,6 @@ export default {
 } as Meta<typeof Table>;
 
 type Story = StoryObj<typeof Table>;
-
-export const Default: Story = {
-    args: {
-        columns: tableData.columns,
-        data: tableData.data,
-    },
-};
 
 export const Wide: Story = {
     args: {

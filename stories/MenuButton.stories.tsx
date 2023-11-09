@@ -16,33 +16,21 @@ export const CommonMenuButton: Story = {
             <MenuButton.Item>First item</MenuButton.Item>,
             <MenuButton.Item>Second item</MenuButton.Item>,
             <MenuButton.Divider />,
-            <MenuButton.Item>Third item</MenuButton.Item>,
+            <MenuButton.Item>
+                <div className="text-danger-500 flex gap-2 items-center">
+                    <BiTrash /> Delete
+                </div>
+            </MenuButton.Item>,
         ],
     },
 };
 
 export const IconMenuButton: Story = {
     args: {
-        trigger: <BiHome />,
-        children: [
-            <MenuButton.Item>First item</MenuButton.Item>,
-            <MenuButton.Item>Second item</MenuButton.Item>,
-            <MenuButton.Divider />,
-            <MenuButton.Item>
-                <div className="text-danger-500 flex gap-2 items-center"><BiTrash /> Delete</div>
-            </MenuButton.Item>,
-        ],
-    },
-};
-
-export const MenuButtonClickHandlers: Story = {
-    args: {
-        trigger: <BiHome />,
-        children: [
-            <MenuButton.Item>First item</MenuButton.Item>,
-            <MenuButton.Item>
-                <div className="text-danger-500 flex gap-2 items-center"><BiTrash /> Delete</div>
-            </MenuButton.Item>,
-        ],
+        ...CommonMenuButton.args,
+        color: 'primary',
+        rounded: true,
+        iconButton: true,
+        trigger: <BiHome />
     },
 };

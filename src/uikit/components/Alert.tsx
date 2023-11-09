@@ -3,7 +3,7 @@ import {clsx} from "clsx";
 
 export const Alert = ({color = 'default', className, ...props}: CardProps) => {
     const cardClasses = clsx(
-        'border-none !shadow-none',
+        'border-none !shadow-none py-1',
         className,
     )
 

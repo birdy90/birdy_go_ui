@@ -13,16 +13,10 @@ const commonArgs = {
     header: "Card title",
     children: (
         <div className="flex justify-center">
-            <BiHome width={128} />
+            <BiHome className="h-6" />
         </div>
     ),
 }
-
-export const Default: Story = {
-    args: {
-        ...commonArgs,
-    },
-};
 
 export const Colors: Story = {
     args: {

@@ -88,12 +88,3 @@ export const Rounded: Story = {
     },
     render: AllButtonVariants,
 };
-
-export const RoundedLarge: Story = {
-    args: {
-        ...commonArgs,
-        large: true,
-        rounded: true,
-    },
-    render: AllButtonVariants,
-};

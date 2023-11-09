@@ -12,15 +12,9 @@ export const Default: Story = {
     args: {
         name: 'some-input',
         label: "Some text field",
+        placeholder: "Some text field placeholder",
         description: "This text is made for additional clarifications",
         required: true,
-    },
-};
-
-export const Placeholder: Story = {
-    args: {
-        placeholder: "Some text field placeholder",
-        ["aria-label"]: "label",
     },
 };
 

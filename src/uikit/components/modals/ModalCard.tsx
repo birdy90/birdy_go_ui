@@ -18,7 +18,7 @@ export const ModalCard = (props: ModalCardProps) => {
     } = props;
 
     return (
-        <Card header={header}>
+        <Card header={header} className="shadow-xl">
             <div className="text-left py-2">{children}</div>
             <Divider/>
             <div className="flex gap-2 items-center justify-end pt-1">

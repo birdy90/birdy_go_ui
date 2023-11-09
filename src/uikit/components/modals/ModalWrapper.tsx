@@ -11,7 +11,7 @@ export const ModalWrapper = (props: ModalWrapperProps) => {
     const overlayClasses = clsx(
         'flex items-center justify-center fixed text-center',
         'inset-0 z-10 overflow-y-auto min-h-[100dvh] w-[100dvw] p-4',
-        'bg-white/25 dark:bg-black/25 backdrop-blur-[1px]'
+        'bg-white/50 dark:bg-black/25 backdrop-blur-[5px]'
     );
 
     return (

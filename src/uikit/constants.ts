@@ -10,7 +10,7 @@ export const inputCommonClasses = (errored?: boolean, large?: boolean) => {
     return clsx(
         'bg-white dark:bg-gray-800',
         'border border-border dark:border-border-dark',
-        'px-2 py-0.5 rounded h-8 flex leading-none',
+        'px-2 py-0.5 rounded h-8 flex',
         large && 'h-10',
         errored && 'border-danger-500',
         focusOutlineClasses,

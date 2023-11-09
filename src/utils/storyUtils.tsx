@@ -16,7 +16,7 @@ export const tableDataGenerator = (columnLen: number, len: number, stringLen = 7
     const data = [...Array(len)].map((_, i) => {
         const rowData = {};
         columns.forEach((column, j) => {
-            rowData[column.id as never] = `Cell data ${i}-${j}` as never;
+            rowData[column.id as never] = `Cell data ${j}.${i}` as never;
         });
         return rowData;
     });

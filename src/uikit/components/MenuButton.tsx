@@ -1,12 +1,17 @@
 import {MenuTrigger, Popover, Menu, Item, Separator} from 'react-aria-components';
-import { PropsWithChildren, ReactNode } from "react";
-import {Button, Card} from "../";
+import {PropsWithChildren, ReactElement, ReactNode} from "react";
+import {Button, ButtonProps, Card} from "../";
 import {clsx} from "clsx";
 
-export interface MenuButtonProps extends PropsWithChildren {
-    className?: string;
+export interface MenuButtonProps extends ButtonProps {
     trigger?: ReactNode;
     loading?: boolean;
+    iconButton?: never;
+}
+
+export interface IconMenuButtonProps extends Omit<MenuButtonProps, 'iconButton'> {
+    trigger?: ReactElement;
+    iconButton?: boolean;
 }
 
 export interface MenuButtonItemProps extends PropsWithChildren {
@@ -28,17 +33,20 @@ const MenuButtonItem = (props: MenuButtonItemProps) => {
 }
 MenuButtonItem.displayName = "MenuButtonItem";
 
-export const MenuButton = (props: MenuButtonProps) => {
+export const MenuButton = ({children, ...props}: MenuButtonProps | IconMenuButtonProps) => {
+    const buttonIcon= props.iconButton ? props.trigger : undefined;
+    const buttonChildren = props.iconButton ? null : props.trigger;
+
     return (
         <MenuTrigger>
-            <Button className={props.className} loading={props.loading}>
-                {props.trigger}
+            <Button {...props} icon={buttonIcon}>
+                {buttonChildren}
             </Button>
 
             <Popover>
                 <Card className="!p-1">
                     <Menu className="outline-none">
-                        {props.children}
+                        {children}
                     </Menu>
                 </Card>
             </Popover>

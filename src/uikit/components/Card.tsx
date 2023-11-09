@@ -2,6 +2,7 @@ import React from "react";
 import {clsx} from "clsx";
 import { ColorType } from "../types";
 import { Divider } from "./";
+import {twMerge} from "tailwind-merge";
 
 export interface CardProps extends React.HTMLAttributes<Element> {
     color?: ColorType;
@@ -19,15 +20,15 @@ export const Card = ({className, overrideClassName, header, children, color = 'w
         danger: "bg-danger-200 dark:bg-danger-500/30",
     };
 
-    const cardClasses = overrideClassName ?? clsx(
+    const cardClasses = overrideClassName ?? twMerge(clsx(
         'rounded-lg px-3 py-2 shadow',
         color && colorMapping[color],
         !color && 'border dark:border-border-dark border-border',
         className,
-    );
+    ));
 
     const dividerClasses = clsx(
-        color !== 'white' && 'border-border-dark/10',
+        color !== 'white' && 'border-b-border-dark/20',
     );
 
     return (

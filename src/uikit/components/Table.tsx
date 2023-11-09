@@ -104,7 +104,7 @@ export const Table = <TData = unknown,>(props: TableProps<TData>) => {
                     return (
                         <Row data-row={row.index} className="odd:bg-gray-50 hover:bg-gray-100 dark:odd:bg-gray-900 dark:hover:bg-gray-800" key={row.id}>
                             {row.getVisibleCells().map((cell) => (
-                                <Cell key={cell.id} className="px-2 py-0.5" style={{width: cell.column.getSize()}}>
+                                <Cell key={cell.id} className="px-2 py-0.5 whitespace-nowrap" style={{width: cell.column.getSize()}}>
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                 </Cell>
                             ))}
