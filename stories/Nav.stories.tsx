@@ -20,7 +20,7 @@ export const Horizontal: Story = {
     args: {
         items: [
             {icon: <BiHome/>},
-            ...dataGenerator(2).map(newMenuItem),
+            ...dataGenerator(1).map(newMenuItem),
             {type: "divider"},
             ...dataGenerator(1).map(newMenuItem),
             {type: "spacer"},
@@ -32,7 +32,7 @@ export const Horizontal: Story = {
                 ),
             },
             {type: "divider"},
-            ...dataGenerator(2).map(newMenuItem),
+            ...dataGenerator(1).map(newMenuItem),
         ],
     },
 };

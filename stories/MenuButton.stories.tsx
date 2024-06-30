@@ -12,24 +12,20 @@ type Story = StoryObj<typeof MenuButton>;
 export const CommonMenuButton: Story = {
     args: {
         trigger: "Menu button",
-        children: [
-            <MenuButton.Item>First item</MenuButton.Item>,
-            <MenuButton.Item>Second item</MenuButton.Item>,
-            <MenuButton.Divider />,
-            <MenuButton.Item>
-                <div className="text-danger-500 flex gap-2 items-center">
-                    <BiTrash /> Delete
-                </div>
-            </MenuButton.Item>,
-        ],
+        children: <>
+            <MenuButton.Item id="1">Toggle alert</MenuButton.Item>
+            <MenuButton.Item href="https://example.com">Second item</MenuButton.Item>
+            <MenuButton.Divider />
+            <MenuButton.Item id="del" className="text-red-500 dark:text-red-500">
+                <BiTrash /> Delete
+            </MenuButton.Item>
+        </>,
     },
 };
 
 export const IconMenuButton: Story = {
     args: {
         ...CommonMenuButton.args,
-        color: 'primary',
-        rounded: true,
         iconButton: true,
         trigger: <BiHome />
     },

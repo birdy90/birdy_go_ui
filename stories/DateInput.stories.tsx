@@ -12,5 +12,6 @@ export const DateTime: Story = {
     args: {
         label: "This is date and time field",
         defaultValue: "2022-11-19T21:00:02Z",
+        description: 'You can couse date and time',
     },
 };

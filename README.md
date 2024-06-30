@@ -1,13 +1,19 @@
 # Birdy Go Core
 
-Built with `Vite` + `React` + `TypeScript SWC` + `Tailwind`. 
+Built with `Vite` + `React` + `TypeScript SWC`. 
 
 Besides that, I'm using:
+- `tailwind`
 - `react-aria-components`
 - `react-icons`
 - `react-hook-form`
 - `@tanstack/react-table`
-- `nodemailer`
+
+## Features
+
+> **Reactivity** based on `react-aria`
+
+> **Customization** with `tailwind`, customize adding classes or remove default styles completely
 
 ## Environment variables
 

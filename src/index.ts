@@ -1,3 +1,5 @@
 import './global.css';
 
-export * from './uikit';
+export * from './hooks';
+export * from './types';
+export * from "./components";

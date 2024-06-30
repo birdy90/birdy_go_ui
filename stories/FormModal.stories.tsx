@@ -1,10 +1,8 @@
 import {Meta, StoryObj} from "@storybook/react";
-import {Button, FormInput, FormSelect, Modal, ModalProps, useModal} from "../src";
-import {FC} from "react";
-import {FormModal} from "../src/uikit/components/modals/FormModal";
+import {Button, FormInput, FormSelect, ModalProps, useModal} from "../src";
+import {FormModal} from "../src";
 
-const StoryRenderComponent = (args: ModalProps, as: FC<ModalProps> = Modal) => {
-    const Component = as;
+const StoryRenderComponent = (args: ModalProps) => {
     const modalId = 'some-modal';
     const modalData = useModal({
         id: modalId,
@@ -15,14 +13,14 @@ const StoryRenderComponent = (args: ModalProps, as: FC<ModalProps> = Modal) => {
 
     return <>
         <Button onClick={modalData.open}>Open modal</Button>
-        <Component {...args} {...modalData} />
+        <FormModal {...args} {...modalData} />
     </>
 }
 
 export default {
     title: "Components/Modal",
     component: FormModal,
-    render: (args) => StoryRenderComponent(args),
+    render: StoryRenderComponent,
 } as Meta<typeof FormModal>;
 
 type Story = StoryObj<typeof FormModal>;
@@ -41,5 +39,4 @@ export const WithForm: Story = {
         </div>,
         defaultValues: { name: '', gender: '' },
     },
-    render: (args) => StoryRenderComponent(args, FormModal),
 };

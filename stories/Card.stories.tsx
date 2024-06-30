@@ -1,6 +1,5 @@
 import {Meta, StoryObj} from "@storybook/react";
-import {BiHome} from "react-icons/bi";
-import {Card, ColorTypeValues} from "../src";
+import {Card} from "../src";
 
 export default {
     title: "Components/Card",
@@ -10,23 +9,20 @@ export default {
 type Story = StoryObj<typeof Card>;
 
 const commonArgs = {
-    header: "Card title",
-    children: (
-        <div className="flex justify-center">
-            <BiHome className="h-6" />
-        </div>
-    ),
+    header: "What Is Hypertext?",
+    children: "Hypertext is text displayed on a computer display or other electronic devices with references (hyperlinks) to other text that the reader can immediately access",
+    className: 'max-w-sm',
 }
 
-export const Colors: Story = {
+export const Default: Story = {
     args: {
         ...commonArgs,
     },
-    render: (args) => {
-        return <div className="flex flex-wrap gap-2">
-            {ColorTypeValues.map(color => {
-                return <Card {...args} color={color} className="w-96" />
-            })}
-        </div>;
+};
+
+export const CustomHeader: Story = {
+    args: {
+        ...commonArgs,
+        header: <div className="flex flex-col items-center font-semibold"><h2>What</h2><h3>Is</h3><h4>Hypertext?</h4></div>
     },
 };

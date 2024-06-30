@@ -6,8 +6,34 @@
     @apply bg-gray-950 text-white;
 }
 
-@layer components {
+@layer base {
+    :root {
+        --color-primary-50: 230 241 254;
+        --color-primary-100: 204 227 253;
+        --color-primary-200: 153 199 251;
+        --color-primary-300: 102 170 249;
+        --color-primary-400: 51 142 247;
+        --color-primary-500: 0 111 238;
+        --color-primary-600: 0 91 196;
+        --color-primary-700: 0 68 147;
+        --color-primary-800: 0 46 98;
+        --color-primary-900: 0 23 49;
 
+        --color-secondary-50: 255 247 235;
+        --color-secondary-100: 253 232 200;
+        --color-secondary-200: 251 208 140;
+        --color-secondary-300: 248 178 81;
+        --color-secondary-400: 247 156 51;
+        --color-secondary-500: 240 116 16;
+        --color-secondary-600: 213 81 10;
+        --color-secondary-700: 176 53 13;
+        --color-secondary-800: 143 42 17;
+        --color-secondary-900: 118 35 17;
+        --color-secondary-950: 68 14 4;
+    }
+}
+
+@layer components {
     *::-webkit-scrollbar {
         @apply bg-gray-100 dark:bg-gray-900 w-1.5 h-1.5;
     }
@@ -19,41 +45,4 @@
     *::-webkit-scrollbar-thumb {
         @apply bg-gray-300 dark:bg-gray-700 rounded-full;
     }
-}
-
-:root {
-    --color-primary-50: 230 241 254;
-    --color-primary-100: 204 227 253;
-    --color-primary-200: 153 199 251;
-    --color-primary-300: 102 170 249;
-    --color-primary-400: 51 142 247;
-    --color-primary-500: 0 111 238;
-    --color-primary-600: 0 91 196;
-    --color-primary-700: 0 68 147;
-    --color-primary-800: 0 46 98;
-    --color-primary-900: 0 23 49;
-
-    --color-secondary-50: 255 247 235;
-    --color-secondary-100: 253 232 200;
-    --color-secondary-200: 251 208 140;
-    --color-secondary-300: 248 178 81;
-    --color-secondary-400: 247 156 51;
-    --color-secondary-500: 240 116 16;
-    --color-secondary-600: 213 81 10;
-    --color-secondary-700: 176 53 13;
-    --color-secondary-800: 143 42 17;
-    --color-secondary-900: 118 35 17;
-    --color-secondary-950: 68 14 4;
-
-    --color-danger-50: 255 241 241;
-    --color-danger-100: 255 223 223;
-    --color-danger-200: 255 197 197;
-    --color-danger-300: 255 157 157;
-    --color-danger-400: 255 100 100;
-    --color-danger-500: 255 61 61;
-    --color-danger-600: 237 21 21;
-    --color-danger-700: 200 13 13;
-    --color-danger-800: 165 15 15;
-    --color-danger-900: 136 20 20;
-    --color-danger-950: 75 4 4;
 }
